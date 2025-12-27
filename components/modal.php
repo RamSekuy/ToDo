@@ -14,17 +14,35 @@
     </div>
 </div>
 
-<button
-    onclick="modalTrigger(event)"
-    class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg hover:bg-green-600 transition-all hover:scale-110" >
-    <svg xmlns="http://www.w3.org/2000/svg"
-        class="w-7 h-7"
-        fill="none" viewBox="0 0 24 24"
-        stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" d="M12 4v16m8-8H4"/>
-    </svg>
-</button>
+
+<div class="fixed bottom-8 right-8">
+    <a href="task-groups.php">  
+        <button class="w-12 h-12 mb-4 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg hover:bg-blue-600 transition-all hover:scale-110" >
+            <svg xmlns="http://www.w3.org/2000/svg"
+     width="24" height="24" viewBox="0 0 24 24"
+     fill="none" stroke="currentColor" stroke-width="2"
+     stroke-linecap="round" stroke-linejoin="round">
+  <rect x="3" y="3" width="7" height="7" rx="2"/>
+  <rect x="14" y="3" width="7" height="7" rx="2"/>
+  <rect x="3" y="14" width="7" height="7" rx="2"/>
+  <rect x="14" y="14" width="7" height="7" rx="2"/>
+</svg>
+
+        </button>
+
+    </a>
+    <button
+        onclick="modalTrigger(event)"
+        class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg hover:bg-green-600 transition-all hover:scale-110" >
+        <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-7 h-7"
+            fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+    </button>
+</div>
 
 <div id="trash"
     ondragover="event.preventDefault()"

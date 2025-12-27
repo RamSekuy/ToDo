@@ -18,7 +18,9 @@ function card($id, $title, $description, $color) {
         <?=$title?>
       </h3>
       <p class="text-sm text-gray-600">
-        <?=$description?>
+        <?=strlen($description) > 25
+        ? substr($description, 0, 25) . '...'
+        : $description;?>
       </p>
     </div>
     <?php

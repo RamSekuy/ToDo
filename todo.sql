@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2025 at 08:42 AM
+-- Generation Time: Dec 27, 2025 at 06:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -30,24 +30,48 @@ SET time_zone = "+00:00";
 CREATE TABLE `tasks` (
   `id` char(36) NOT NULL DEFAULT uuid(),
   `title` varchar(100) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `priority` int(11) NOT NULL,
-  `status` enum('ToDo','In Progress','Done') NOT NULL DEFAULT 'ToDo'
+  `status` enum('ToDo','In Progress','Done') NOT NULL,
+  `task_group` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `title`, `description`, `priority`, `status`) VALUES
-('5df4dec3-d9ae-11f0-9454-089e01c6e6a5', 'CharDev', 'Survei', 2, 'In Progress'),
-('6bcc5573-d9ae-11f0-9454-089e01c6e6a5', 'WebDev', 'Bikin ini', 2, 'Done'),
-('73f0a8e7-d9ae-11f0-9454-089e01c6e6a5', 'Leadership', 'blm tau', 2, 'ToDo'),
-('811a4be2-d9ae-11f0-9454-089e01c6e6a5', 'MTK Diskrit', 'ngitung', 0, 'ToDo'),
-('8a146ab3-d9ae-11f0-9454-089e01c6e6a5', 'Information System', 'Jurnal', 4, 'In Progress'),
-('95ec7ec9-d9ae-11f0-9454-089e01c6e6a5', 'Algorithm', 'mending tidur', 10, 'ToDo'),
-('b95a7ed0-d9ae-11f0-9454-089e01c6e6a5', 'Korupsi', 'Cari cara korupsi', 4, 'Done'),
-('e23c44cf-d9ae-11f0-9454-089e01c6e6a5', 'English', 'blm tau', 8, 'ToDo');
+INSERT INTO `tasks` (`id`, `title`, `description`, `priority`, `status`, `task_group`) VALUES
+('072c191a-e34c-11f0-b969-089e01c6e6a5', 'Kumpulin', 'nunggu link gform', 6, 'In Progress', 'UAS Web'),
+('3e68987b-e34c-11f0-b969-089e01c6e6a5', 'rapiin kode', 'fokus tugas lain dlu', 4, 'ToDo', 'UAS Web'),
+('48129828-e34b-11f0-b969-089e01c6e6a5', 'Review Jurnal No6', 'The impact of intersectional racial and gender biases on minority female leadership over two centuries', 2, 'In Progress', 'UAS Kepemimpinan'),
+('5eee2b55-e34c-11f0-b969-089e01c6e6a5', 'Tambahin Fitur Gak Penting', '', 8, 'ToDo', 'UAS Web'),
+('80e02c8b-e34b-11f0-b969-089e01c6e6a5', 'Pembuatan Form', 'Pengalaman menggunakan AI', 10, 'Done', 'UAS Pengembangan Karakter'),
+('8f63aa95-e34b-11f0-b969-089e01c6e6a5', 'Penyebaran Form', 'cari 120 responden', 4, 'In Progress', 'UAS Pengembangan Karakter'),
+('9e3ef13a-e34b-11f0-b969-089e01c6e6a5', 'Pembuatan Jurnal', 'Jurnal hasil penelitian', 2, 'ToDo', 'UAS Pengembangan Karakter'),
+('af939d19-e34a-11f0-b969-089e01c6e6a5', 'Review Jurnal No3', 'Gender_Equality_in_the_Workplace_Strategy', 8, 'Done', 'UAS Kepemimpinan'),
+('da83df43-e349-11f0-b969-089e01c6e6a5', 'Page Group', '', 4, 'Done', 'UAS Web'),
+('e23b3abc-e34b-11f0-b969-089e01c6e6a5', 'Pembuatan Database', '', 2, 'Done', 'UAS Web'),
+('f236a82d-e34b-11f0-b969-089e01c6e6a5', 'Bug Fix', 'Mending tidur', 6, 'ToDo', 'UAS Web'),
+('f45f6b24-e348-11f0-b969-089e01c6e6a5', 'Page ToDo', '', 6, 'Done', 'UAS Web');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_groups`
+--
+
+CREATE TABLE `task_groups` (
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `task_groups`
+--
+
+INSERT INTO `task_groups` (`name`) VALUES
+('UAS Kepemimpinan'),
+('UAS Pengembangan Karakter'),
+('UAS Web');
 
 --
 -- Indexes for dumped tables
@@ -58,7 +82,23 @@ INSERT INTO `tasks` (`id`, `title`, `description`, `priority`, `status`) VALUES
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uniq_status_priority` (`status`,`priority`);
+  ADD UNIQUE KEY `uniq_group_status_priority` (`task_group`,`status`,`priority`);
+
+--
+-- Indexes for table `task_groups`
+--
+ALTER TABLE `task_groups`
+  ADD PRIMARY KEY (`name`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD CONSTRAINT `fk_task_group` FOREIGN KEY (`task_group`) REFERENCES `task_groups` (`name`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

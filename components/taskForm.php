@@ -2,7 +2,7 @@
     <h1 class="text-xl font-semibold text-gray-800">
         Add Task
     </h1>
-
+    <input type="text" name="group" value="<?= htmlspecialchars($_GET['group'] ?? '') ?>" hidden readonly/>
     <div class="flex flex-col gap-1">
         <label for="title" class="text-sm font-medium text-gray-700">
             Title

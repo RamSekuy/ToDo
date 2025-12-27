@@ -6,7 +6,7 @@ $newStatus = $_POST['status'] ?? '';
 $otherId   = $_POST['otherTaskId'] ?? null;
     if (!$otherId) {
         addToLastPriority($conn,$id,$newStatus);
-        header("Location: ../");
+        header("Location: ../?group=" . urlencode(getTaskByID($conn,$id)['task_group']));
         exit;
     }
     $otherTask =getTaskByID($conn,$otherId);
@@ -46,7 +46,7 @@ $otherId   = $_POST['otherTaskId'] ?? null;
         echo "execute3";
     }
     mysqli_commit($conn);
-    header("Location: ../");
+    header("Location: ../?group=" . urlencode($task['task_group']));
     exit;
 } catch (Exception $e) {
     mysqli_rollback($conn);

@@ -18,7 +18,6 @@ include 'services/getTasks.php';
     <body class="bg-gray-100 p-0 flex justify-center items-center gap-x-4">
         <?php include 'components/modal.php'; ?>
         <?php foreach(["ToDo","In Progress","Done"] as $status):
-            // print_r($tasks)
             echo column($status,...$tasks[$status]);
         endforeach?>
     <script src="assets/js/app.js"></script>

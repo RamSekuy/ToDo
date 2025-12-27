@@ -1,7 +1,12 @@
 <?php
+$group = trim($_GET['group'] ?? '');
+if ($group === '') {
+    header('Location: task-groups.php');
+    exit;
+}
 require_once "db.php";
 
-$sql = "SELECT * FROM tasks ORDER BY status, priority ASC";
+$sql = "SELECT * FROM tasks WHERE task_group = '$group' ORDER BY status, priority ASC";
 $res = mysqli_query($conn, $sql);
 
 $tasks = [
