@@ -2,7 +2,10 @@
     <h1 class="text-xl font-semibold text-gray-800">
         Add Task
     </h1>
-    <input type="text" name="group" value="<?= htmlspecialchars($_GET['group'] ?? '') ?>" hidden readonly/>
+    <!-- input group -->
+    <input type="text" name="group" value="<?= htmlspecialchars($_GET['group'] ?? '') ?>" hidden readonly />
+
+    <!-- input title -->
     <div class="flex flex-col gap-1">
         <label for="title" class="text-sm font-medium text-gray-700">
             Title
@@ -15,10 +18,10 @@
             placeholder="Task title..."
             class="rounded-lg border border-gray-300 px-3 py-2
                    focus:outline-none focus:ring-2 focus:ring-green-500
-                   focus:border-green-500"
-        />
+                   focus:border-green-500" />
     </div>
 
+    <!-- input Description -->
     <div class="flex flex-col gap-1">
         <label for="desc" class="text-sm font-medium text-gray-700">
             Description
@@ -31,10 +34,11 @@
             class="rounded-lg border border-gray-300 px-3 py-2
                    resize-none
                    focus:outline-none focus:ring-2 focus:ring-green-500
-                   focus:border-green-500"
-        ></textarea>
+                   focus:border-green-500">
+        </textarea>
     </div>
 
+    <!-- buttons -->
     <div class="flex justify-end gap-3 pt-2">
         <button
             type="button"
@@ -42,8 +46,7 @@
             class="px-4 py-2 rounded-lg
                    bg-gray-200 text-gray-700
                    hover:bg-gray-300
-                   font-medium transition"
-        >
+                   font-medium transition">
             Cancel
         </button>
 
@@ -52,8 +55,7 @@
             class="px-4 py-2 rounded-lg
                    bg-green-500 text-white
                    hover:bg-green-600
-                   font-medium transition"
-        >
+                   font-medium transition">
             Add Task
         </button>
     </div>

@@ -7,13 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $name = trim($_POST['name'] ?? '');
-
-// validasi
 if ($name === '') {
     header('Location: ../task-groups.php?error=invalid');
     exit;
 }
 
+// delete tasks in the group
 $stmt = mysqli_prepare(
     $conn,
     "DELETE FROM tasks WHERE task_group = ?"
@@ -21,7 +20,8 @@ $stmt = mysqli_prepare(
 mysqli_stmt_bind_param($stmt, "s", $name);
 mysqli_stmt_execute($stmt);
 $res = mysqli_stmt_get_result($stmt);
-// hapus group
+
+// delete group
 $stmt = mysqli_prepare(
     $conn,
     "DELETE FROM task_groups WHERE name = ?"

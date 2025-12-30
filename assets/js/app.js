@@ -2,6 +2,7 @@ const api = "http://localhost/uas/";
 let task = null;
 const trash = document.getElementById("trash");
 const modal = document.getElementById("modal");
+
 function loadingStart() {
   document.getElementById("updating").classList.remove("hidden");
 }
@@ -21,6 +22,7 @@ function taskMove(e) {
   element.classList.add("opacity-50");
   setTask(element);
 }
+
 function taskMoveEnd(e) {
   setTask(null);
   e.currentTarget.classList.remove("opacity-50");
@@ -33,7 +35,6 @@ function updateTaskStatus(e) {
 
   const status = e.currentTarget.id;
   if (task.closest("#" + status)) return;
-
   // buat form secara dinamis
   const form = document.createElement("form");
   form.method = "POST";
@@ -67,12 +68,10 @@ function onTaskDrop(e) {
     deleteTask(task.id);
     return;
   }
-
+  // get status
   const element = e.target.closest(".card");
   if (!element || element.id === task.id) return;
-
   const status = element.parentElement.parentElement.id;
-
   loadingStart();
 
   // buat form
